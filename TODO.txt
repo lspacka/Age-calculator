@@ -1,0 +1,3 @@
+- diff validation for each input
+- get values from the 3 inputs, format them as date and validate
+- once validated do calc with current date
