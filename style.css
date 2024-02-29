@@ -6,6 +6,7 @@
 
 body {
   min-height: 100vh;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 375px) {
@@ -44,6 +45,13 @@ input {
   height: 50px;
   margin-right: 25px;
   margin-top: 5px;
+  padding: 15px;
+}
+
+.error-msg {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: red;
 }
 
 
@@ -61,7 +69,7 @@ input {
 }
 
 button {
-  transform: translateY(77px);
+  transform: translate(-40px, 87px);
   width: 60px;
   height: 60px;
   justify-self: self-end;
