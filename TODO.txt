@@ -8,4 +8,5 @@ perhaps it would be best to try this complicated way first and then simplify...
 - fix layout shift when error msg appears
 
 + diff validation for each input
++ fix is_valid bug
 - once validated do calc with current date
