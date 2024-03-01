@@ -32,6 +32,18 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear }) {
   const [errorMsg2, setErrorMsg2] = React.useState('')
   const [errorMsg3, setErrorMsg3] = React.useState('')
 
+  function isLeapYear(year) {
+    return (year%4==0 && year%100!=0) || (year%400==0)
+  }
+
+  function InvalidDate(isValid) {
+    setErrorMsg1('Invalid Date.')
+    setErrorMsg2('')
+    setErrorMsg3('')
+
+    return isValid = !isValid
+  }
+
   const handleDayChange = (e) => {
     setDay(e.target.value)
     setErrorMsg1('')
@@ -89,6 +101,35 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear }) {
     }
   
     //  validate date
+    if (is_valid) {
+      // // check feb and !leap year
+      // if (month==2 && !isLeapYear(year) && day>28) InvalidDate(is_valid) 
+      // // check feb and leap year
+      // if (month==2 && isLeapYear(year) && day>29) InvalidDate(is_valid)
+      // check feb and !leap year
+      if (month==2) {
+        if ((!isLeapYear(year) && day>28) || (isLeapYear(year) && day>29)) {
+          InvalidDate(is_valid)
+        }
+      }
+
+    //   if (month<8) {
+    //     if (month%2==0 && month!=2 && day>30) InvalidDate(is_valid)
+    //     else if (month%2!=0 && day>31) InvalidDate(is_valid)
+
+    //   }
+    //   if (month>=8) {
+    //     if (month%2==0 && day>31) InvalidDate(is_valid) 
+    //     else if (month%2!=0 && day>30) InvalidDate(is_valid)
+    //   }
+    // }
+    if (month<8) {
+      if ((month%2==0 && month!=2 && day>30) || (month%2!=0 && day>31)) InvalidDate(is_valid)
+    }
+    if (month>=8) {
+      if ((month%2==0 && day>31) || (month%2!=0 && day>30)) InvalidDate(is_valid)
+    } 
+  }
 
     //  do calc
     if (is_valid) {
