@@ -28,9 +28,9 @@ function App() {
 }
 
 function InputGroup({ day, month, year, setDay, setMonth, setYear }) {
-  const [errorMsg1, setErrorMsg1] = React.useState(' ')
-  const [errorMsg2, setErrorMsg2] = React.useState(' ')
-  const [errorMsg3, setErrorMsg3] = React.useState(' ')
+  const [errorMsg1, setErrorMsg1] = React.useState('')
+  const [errorMsg2, setErrorMsg2] = React.useState('')
+  const [errorMsg3, setErrorMsg3] = React.useState('')
 
   const handleDayChange = (e) => {
     setDay(e.target.value)
@@ -49,20 +49,51 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    let current_year = new Date().getFullYear()
+    let is_valid = true
 
+    // validate day 
     if (!day) {
       setErrorMsg1('This field is required.')
-    }
-    if (!month) setErrorMsg2('This field is required.')
-    if (!year) setErrorMsg3('This field is required.')
-
-    if (day && month && year) {
-      console.log('HOORAY')
+      is_valid = false
+    } else if (isNaN(day) || day < 1 || day > 31) {
+      setErrorMsg1('Must be a valid day.')
+      is_valid = false
+    } else {
       setErrorMsg1('')
+    }
+
+    // validate month
+    if (!month) {
+      setErrorMsg2('This field is required.')
+      is_valid = false
+    } else if (isNaN(month) || month < 1 || month > 12) {
+      setErrorMsg2('Must be a valid month')
+      is_valid = false
+    } else {
       setErrorMsg2('')
+    }
+
+    // validate year
+    if (!year) {
+      setErrorMsg3('This field is required.')
+      is_valid = false
+    } else if (isNaN(year) || year.length != 4 || year < 0) {
+      setErrorMsg3('Must be a valid year.')
+      is_valid = false
+    } else if (parseInt(year) > current_year) {
+      setErrorMsg3('Must be in the past m8!')
+      is_valid = false
+    } else {
       setErrorMsg3('')
     }
-    else console.log('FUCKs SAKE')
+  
+    //  validate date
+
+    //  do calc
+    if (is_valid) {
+      console.log('Valid date entered, performing calculations...')
+    }
   }
 
   return (
@@ -105,7 +136,7 @@ function Input({ label, placeholder, errorMsg, onChange }) {
         className="input" 
         name={label}
         onChange={onChange}
-        // required
+        // autoComplete="off"
       >
       </input>
       <p className="error-msg">{errorMsg}</p>
@@ -113,7 +144,7 @@ function Input({ label, placeholder, errorMsg, onChange }) {
   )
 }
 
-function DisplayGroup({ day, month, year, onCalc }) {
+function DisplayGroup({ onCalc }) {
   const handleCalculation = () => {
     const result = onCalc()
     return result
@@ -124,13 +155,15 @@ function DisplayGroup({ day, month, year, onCalc }) {
   return (
     <>
       <Display time="Days" value={calcResult.day}/>
-      <Display time="Months"value={calcResult.month}/>
+      <Display time="Months" value={calcResult.month}/>
       <Display time="Years" value={calcResult.year}/>
     </>
   )
 }
 
 function Display({ time, value}) {
+  if (!value) value = '--'
+
   return <div className="display">{value} {time}</div>
 }
 
