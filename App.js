@@ -1,7 +1,45 @@
+function calculateAgeAndDays(birthDate) {
+  const today = new Date();
+  const birthDateObj = new Date(birthDate);
+
+  // Calculate age
+  let age = today.getFullYear() - birthDateObj.getFullYear();
+  const birthMonth = birthDateObj.getMonth();
+  const birthDay = birthDateObj.getDate();
+  const currentMonth = today.getMonth();
+  const currentDay = today.getDate();
+
+  // Adjust age if the birthday hasn't occurred yet in the current year
+  if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDay < birthDay)) {
+    age--;
+  }
+
+  // Calculate difference in years
+  const diffYears = age;
+
+  // Calculate difference in months
+  let diffMonths = currentMonth - birthMonth;
+  if (diffMonths < 0) {
+    diffMonths += 12;
+  }
+
+  // Calculate difference in days
+  let diffDays = currentDay - birthDay;
+  if (diffDays < 0) {
+    const prevMonthLastDay = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    diffDays = prevMonthLastDay + diffDays;
+    diffMonths--;
+  }
+
+  return { diffYears, diffMonths, diffDays };
+}
+
+
 function App() {
   const [day, setDay] = React.useState('')
   const [month, setMonth] = React.useState('')
   const [year, setYear] = React.useState('')
+  const [calcResult, setCalcResult] = React.useState({})
   
   const handleCalculation = () => {
     return { day, month, year} // ?
@@ -16,18 +54,19 @@ function App() {
         day={day}
         month={month}
         year={year}
+        setCalcResult={setCalcResult}
       />
       <DisplayGroup 
-        day={day}
-        month={month}
-        year={year}
-        onCalc={handleCalculation}
+        // day={calcResult.diffDays}
+        // month={calcResult.diffMonths}
+        // year={calcResult.diffYears}
+        calcResult={calcResult}
       />
     </>
   )
 }
 
-function InputGroup({ day, month, year, setDay, setMonth, setYear }) {
+function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult }) {
   const [errorMsg1, setErrorMsg1] = React.useState('')
   const [errorMsg2, setErrorMsg2] = React.useState('')
   const [errorMsg3, setErrorMsg3] = React.useState('')
@@ -44,16 +83,17 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear }) {
 
   function isValidDate(day, month) {
     if (month==2) {
-      if ((!isLeapYear(year) && day>28) || (isLeapYear(year) && day>29)) {
+      if ((!isLeapYear(year) && day>28) || (isLeapYear(year) && day>29))
         return false
-      }
     }
 
     if (month<8) {
-      if ((month%2==0 && month!=2 && day>30) || (month%2!=0 && day>31)) return false
+      if ((month%2==0 && month!=2 && day>30) || (month%2!=0 && day>31)) 
+        return false
     }
     if (month>=8) {
-      if ((month%2==0 && day>31) || (month%2!=0 && day>30)) return false
+      if ((month%2==0 && day>31) || (month%2!=0 && day>30)) 
+        return false
     }
     
     return true
@@ -124,6 +164,9 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear }) {
     //  do calc
     if (is_valid) {
       console.log('Valid date entered, performing calculations...')
+      const birthDate = `${year}-${month}-${day}`;
+      const result = calculateAgeAndDays(birthDate)
+      setCalcResult(result)
     }
   }
 
@@ -175,24 +218,24 @@ function Input({ label, placeholder, errorMsg, onChange }) {
   )
 }
 
-function DisplayGroup({ onCalc }) {
-  const handleCalculation = () => {
-    const result = onCalc()
-    return result
-  }
+function DisplayGroup({ calcResult }) {
+  // const handleCalculation = () => {
+  //   const result = onCalc()
+  //   return result
+  // }
 
-  const calcResult = handleCalculation()
+  // const calcResult = handleCalculation()
   
   return (
     <>
-      <Display time="Days" value={calcResult.day}/>
-      <Display time="Months" value={calcResult.month}/>
-      <Display time="Years" value={calcResult.year}/>
+      <Display time="Days" value={calcResult.diffDays}/>
+      <Display time="Months" value={calcResult.diffMonths}/>
+      <Display time="Years" value={calcResult.diffYears}/>
     </>
   )
 }
 
-function Display({ time, value}) {
+function Display({ time, value }) {
   if (!value) value = '--'
 
   return <div className="display">{value} {time}</div>
