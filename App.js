@@ -1,6 +1,12 @@
-function calculateAgeAndDays(birthDate) {
+// ariake sun
+// nord light
+// activate umbra protocol
+// feb 29 1972
+// march 29 1984
+
+function calcAge(birthDate) {
   const today = new Date();
-  const birthDateObj = new Date(birthDate);
+  const birthDateObj = new Date(birthDate)
 
   // Calculate age
   let age = today.getFullYear() - birthDateObj.getFullYear();
@@ -10,7 +16,7 @@ function calculateAgeAndDays(birthDate) {
   const currentDay = today.getDate();
 
   // Adjust age if the birthday hasn't occurred yet in the current year
-  if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDay < birthDay)) {
+  if (currentMonth < birthMonth || (currentMonth == birthMonth && currentDay < birthDay)) {
     age--;
   }
 
@@ -19,6 +25,7 @@ function calculateAgeAndDays(birthDate) {
 
   // Calculate difference in months
   let diffMonths = currentMonth - birthMonth;
+  if (currentMonth==birthMonth) diffMonths = 12
   if (diffMonths < 0) {
     diffMonths += 12;
   }
@@ -30,6 +37,7 @@ function calculateAgeAndDays(birthDate) {
     diffDays = prevMonthLastDay + diffDays;
     diffMonths--;
   }
+  if (diffMonths==12 && diffDays>=0) diffMonths = 0
 
   return { diffYears, diffMonths, diffDays };
 }
@@ -40,10 +48,6 @@ function App() {
   const [month, setMonth] = React.useState('')
   const [year, setYear] = React.useState('')
   const [calcResult, setCalcResult] = React.useState({})
-  
-  const handleCalculation = () => {
-    return { day, month, year} // ?
-  }
 
   return (
     <>
@@ -149,7 +153,7 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
       setErrorMsg3('Must be a valid year.')
       is_valid = false
     } else if (parseInt(year) > current_year) {
-      setErrorMsg3('Must be in the past m8!')
+      setErrorMsg3('Must be in the past')
       is_valid = false
     } else {
       setErrorMsg3('')
@@ -159,13 +163,14 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
     if (!isValidDate(day, month)) {
       is_valid = false
       InvalidDate()
+      setCalcResult({})
     }
 
     //  do calc
     if (is_valid) {
       console.log('Valid date entered, performing calculations...')
       const birthDate = `${year}-${month}-${day}`;
-      const result = calculateAgeAndDays(birthDate)
+      const result = calcAge(birthDate)
       setCalcResult(result)
     }
   }
@@ -218,14 +223,7 @@ function Input({ label, placeholder, errorMsg, onChange }) {
   )
 }
 
-function DisplayGroup({ calcResult }) {
-  // const handleCalculation = () => {
-  //   const result = onCalc()
-  //   return result
-  // }
-
-  // const calcResult = handleCalculation()
-  
+function DisplayGroup({ calcResult }) {  
   return (
     <>
       <Display time="Days" value={calcResult.diffDays}/>
@@ -236,7 +234,7 @@ function DisplayGroup({ calcResult }) {
 }
 
 function Display({ time, value }) {
-  if (!value) value = '--'
+  // if (!value && value!=0) value = '--'
 
   return <div className="display">{value} {time}</div>
 }
