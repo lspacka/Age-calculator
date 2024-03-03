@@ -1,8 +1,6 @@
 // ariake sun
 // nord light
 // activate umbra protocol
-// feb 29 1972
-// march 29 1984
 
 function calcAge(birthDate) {
   const today = new Date();
@@ -25,7 +23,7 @@ function calcAge(birthDate) {
 
   // Calculate difference in months
   let diffMonths = currentMonth - birthMonth;
-  if (currentMonth==birthMonth) diffMonths = 12
+  if (currentMonth == birthMonth) diffMonths = 12
   if (diffMonths < 0) {
     diffMonths += 12;
   }
@@ -60,12 +58,7 @@ function App() {
         year={year}
         setCalcResult={setCalcResult}
       />
-      <DisplayGroup 
-        // day={calcResult.diffDays}
-        // month={calcResult.diffMonths}
-        // year={calcResult.diffYears}
-        calcResult={calcResult}
-      />
+      <DisplayGroup calcResult={calcResult} />
     </>
   )
 }
@@ -85,9 +78,52 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
     setErrorMsg3('')
   }
 
-  function isValidDate(day, month) {
+  function validateInputs(day, month, year) {
+    let is_valid = true
+    let current_year = new Date().getFullYear()
+
+    // validate day 
+    if (!day) {
+      setErrorMsg1('This field is required.')
+      is_valid =  false
+    } else if (isNaN(day) || day < 1 || day > 31) {   // HERE
+      setErrorMsg1('Must be a valid day.')
+      is_valid =  false
+    } else {
+      setErrorMsg1('')
+    }
+
+    // validate month
+    if (!month) {
+      setErrorMsg2('This field is required.')
+      is_valid =  false
+    } else if (isNaN(month) || month < 1 || month > 12) {
+      setErrorMsg2('Must be a valid month')
+      is_valid =  false
+    } else {
+      setErrorMsg2('')
+    }
+
+    // validate year
+    if (!year) {
+      setErrorMsg3('This field is required.')
+      is_valid =  false
+    } else if (isNaN(year) || year.length != 4 || year < 0) {
+      setErrorMsg3('Must be a valid year.')
+      is_valid =  false
+    } else if (parseInt(year) > current_year) {
+      setErrorMsg3('Must be in the past')
+      is_valid =  false
+    } else {
+      setErrorMsg3('')
+    }
+
+    return is_valid
+  }
+
+  function isValidDate(day, month, year) {
     if (month==2) {
-      if ((!isLeapYear(year) && day>28) || (isLeapYear(year) && day>29))
+      if ((!isLeapYear(year) && day>28) || (isLeapYear(year) && day>29)) 
         return false
     }
 
@@ -120,50 +156,58 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    let current_year = new Date().getFullYear()
+    // let current_year = new Date().getFullYear()
     let is_valid = true
 
-    // validate day 
-    if (!day) {
-      setErrorMsg1('This field is required.')
-      is_valid = false
-    } else if (isNaN(day) || day < 1 || day > 31) {
-      setErrorMsg1('Must be a valid day.')
-      is_valid = false
-    } else {
-      setErrorMsg1('')
-    }
+    // // validate day 
+    // if (!day) {
+    //   setErrorMsg1('This field is required.')
+    //   is_valid = false
+    // } else if (isNaN(day) || day < 1 || day > 31) {   // HERE
+    //   setErrorMsg1('Must be a valid day.')
+    //   is_valid = false
+    // } else {
+    //   setErrorMsg1('')
+    // }
 
-    // validate month
-    if (!month) {
-      setErrorMsg2('This field is required.')
-      is_valid = false
-    } else if (isNaN(month) || month < 1 || month > 12) {
-      setErrorMsg2('Must be a valid month')
-      is_valid = false
-    } else {
-      setErrorMsg2('')
-    }
+    // // validate month
+    // if (!month) {
+    //   setErrorMsg2('This field is required.')
+    //   is_valid = false
+    // } else if (isNaN(month) || month < 1 || month > 12) {
+    //   setErrorMsg2('Must be a valid month')
+    //   is_valid = false
+    // } else {
+    //   setErrorMsg2('')
+    // }
 
-    // validate year
-    if (!year) {
-      setErrorMsg3('This field is required.')
-      is_valid = false
-    } else if (isNaN(year) || year.length != 4 || year < 0) {
-      setErrorMsg3('Must be a valid year.')
-      is_valid = false
-    } else if (parseInt(year) > current_year) {
-      setErrorMsg3('Must be in the past')
-      is_valid = false
-    } else {
-      setErrorMsg3('')
-    }
+    // // validate year
+    // if (!year) {
+    //   setErrorMsg3('This field is required.')
+    //   is_valid = false
+    // } else if (isNaN(year) || year.length != 4 || year < 0) {
+    //   setErrorMsg3('Must be a valid year.')
+    //   is_valid = false
+    // } else if (parseInt(year) > current_year) {
+    //   setErrorMsg3('Must be in the past')
+    //   is_valid = false
+    // } else {
+    //   setErrorMsg3('')
+    // }
+
+    // if (!validateInputs(day, month, year)) {
+    //   is_valid = false
+    //   setCalcResult({})
+    // }
+    is_valid = validateInputs(day, month, year)
+    if (!is_valid) setCalcResult({})
   
     //  validate date
-    if (!isValidDate(day, month)) {
-      is_valid = false
-      InvalidDate()
+    if (!isValidDate(day, month, year)) {
       setCalcResult({})
+      is_valid = false
+      console.log('invalid date')
+      // InvalidDate()
     }
 
     //  do calc
@@ -198,7 +242,7 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
         />
         <SubmitButton />
       </div>
-      <div className="sub-btn-cont">
+      <div className="sub-btn-cont"> {/* this is that line besides submit btn */}
         {/* <SubmitButton /> */}
       </div>
     </form>
@@ -226,9 +270,9 @@ function Input({ label, placeholder, errorMsg, onChange }) {
 function DisplayGroup({ calcResult }) {  
   return (
     <>
-      <Display time="Days" value={calcResult.diffDays}/>
-      <Display time="Months" value={calcResult.diffMonths}/>
-      <Display time="Years" value={calcResult.diffYears}/>
+      <Display time="Years" value={calcResult.diffYears} />
+      <Display time="Months" value={calcResult.diffMonths} />
+      <Display time="Days" value={calcResult.diffDays} />
     </>
   )
 }

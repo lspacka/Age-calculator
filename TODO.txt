@@ -12,5 +12,5 @@ perhaps it would be best to try this complicated way first and then simplify...
 + once validated do calc with current date
 + fix bug when birth month is the same as current month
 + fix 0 months display
-- fix day validation (its skipping right to date validation)
-- display reset when any wrong input (maybe putting all inputs validations into 1 function)
+- fix wrong day validation (its skipping right to date validation)
++ display reset when any wrong input (maybe putting all inputs validations into 1 function)
