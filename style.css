@@ -1,3 +1,33 @@
+@font-face {
+  font-family: 'poppins-regular';
+  src: url(assets/fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+  font-family: 'poppins bold';
+  src: url(assets/fonts/Poppins-Bold.ttf);
+}
+
+@font-face {
+  font-family: 'poppins-italic';
+  src: url(assets/fonts/Poppins-Italic.ttf);
+}
+
+@font-face {
+  font-family: 'bold-italic';
+  src: url(assets/fonts/Poppins-BoldItalic.ttf);
+}
+
+@font-face {
+  font-family: 'extra-bold';
+  src: url(assets/fonts/Poppins-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: 'extrabold-italic';
+  src: url(assets/fonts/Poppins-ExtraBoldItalic.ttf);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,7 +37,8 @@
 body {
   min-height: 100vh;
   overflow: hidden;
-  /* background: green; */
+  font-family: "poppins-regular";
+  background: hsl(0, 0%, 94%);
 }
 
 @media screen and (min-width: 375px) {
@@ -21,6 +52,12 @@ body {
 #app {
   display: grid;
   grid-template-rows: 3 1fr;
+  background: hsl(0, 0%, 100%);
+  padding: 40px;
+  padding-bottom: 10px;
+  height: fit-content;
+  border-radius: 15px;
+  border-bottom-right-radius: 120px;
 }
 
 form {
@@ -28,7 +65,7 @@ form {
   /* grid-template-columns: repeat(4, 1fr); */
   grid-template-rows: repeat(2, 1fr);
   width: fit-content;
-  padding: 15px;
+  /* padding: 15px; */
   /* margin-bottom: 50px; */
 }
 
@@ -41,26 +78,45 @@ form {
   width: fit-content;
 }
 
+label {
+  font-size: 0.62rem;
+  font-family: extra-bold;
+  /* color: #716f6f; */
+}
+
 input {
-  width: 110px;
-  height: 50px;
+  width: 105px;
+  height: 45px;
   margin-right: 25px;
   margin-top: 5px;
   padding: 15px;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  cursor: pointer;
+  border: 0.7px solid;
+  border-radius: 5px;
+  outline: none;
+  caret-color: #854dff;
+}
+
+
+input:focus {
+  border-color: #854dff;
 }
 
 .error-msg {
   margin-top: 10px;
-  font-size: 0.7rem;
-  color: red;
+  font-size: 0.57rem;
+  color: #ff5757;
+  font-family: poppins-italic;
 }
 
 
 .sub-btn-cont {
-  transform: translateY(31px);
+  transform: translateY(25px);
   display: grid;
-  border-bottom: solid 1.5px gray;
-  width: 85%;
+  border-bottom: solid 1.5px #ece2e2;
+  width: 95%;
   height: 0;
 }
 
@@ -70,14 +126,15 @@ input {
 }
 
 button {
-  transform: translate(-40px, 87px);
-  width: 60px;
-  height: 60px;
+  transform: translate(30px, 84px);
+  width: 55px;
+  height: 55px;
   justify-self: self-end;
   border-radius: 50%;
   border: none;
   background: hsl(259, 100%, 65%);
   z-index: 1;
+  cursor: pointer;
 }
 
 img {
@@ -86,5 +143,15 @@ img {
 }
 
 .display {
-  margin-bottom: 10px;
+  font-size: 3.5rem;
+  font-family: extrabold-italic;
+}
+
+span {
+  color: hsl(259, 100%, 65%);
+}
+
+.display-group {
+  transform: translateY(-25px);
+  line-height: 1.1;
 }

@@ -1,12 +1,6 @@
-Fe 28
-11:26 am: havent the foggiest about how to start with this...
-some kinda procedure is half forming in me noodle, but it seems a bit complicated 
-perhaps it would be best to try this complicated way first and then simplify...
 
 + validate inputs
 + set state
-- fix layout shift when error msg appears
-
 + diff validation for each input
 + fix is_valid bug
 + once validated do calc with current date
@@ -14,3 +8,8 @@ perhaps it would be best to try this complicated way first and then simplify...
 + fix 0 months display
 - fix wrong day validation (its skipping right to date validation)
 + display reset when any wrong input (maybe putting all inputs validations into 1 function)
+
++ input label red when wrong input
+- change input outline when focused
+- fix layout shift when error msg appears
++ change caret color
