@@ -10,5 +10,5 @@
 + display reset when any wrong input (maybe putting all inputs validations into 1 function)
 
 + input label red when wrong input
-- change input outline when focused
++ fix input outline when focused
 - fix layout shift when error msg appears

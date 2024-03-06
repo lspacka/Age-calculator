@@ -163,7 +163,7 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
     return true
   }
 
-
+  //  INPUT HANDLERS
   const handleDayChange = (e) => {
     setDay(e.target.value)
     setErrorMsg1('')
@@ -182,6 +182,60 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
     setYear(e.target.value)
     setErrorMsg3('')
     setTextColor3('#716f6f')
+    setBorderColor3('#dbdbdb')
+  }
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   // let current_year = new Date().getFullYear()
+  //   let is_valid = true
+
+  //   is_valid = validateInputs(day, month, year)
+  //   if (!is_valid) {
+  //     setCalcResult({})
+  //     // setTextColor('#ff5757')
+  //   } 
+  
+  //   //  validate date
+  //   if (!isValidDate(day, month, year)) {
+  //     setCalcResult({})
+  //     // maybe try a sep container for 'invalid date' msg
+  //     // setTextColor('#ff5757')
+  //     InvalidDate()
+  //     is_valid = false
+  //   }
+
+  //   //  do calc
+  //   if (is_valid) {
+  //     // setTextColor('#716f6f')
+  //     // setBorderColor('#dbdbdb')
+  //     const birthDate = `${year}-${month}-${day}`;
+  //     const result = calcAge(birthDate)
+  //     setCalcResult(result)
+  //   }
+  // }
+
+  const handleFocus1 = () => {
+    setBorderColor1('#854dff')
+  }
+
+  const handleBlur1 = () => {
+    setBorderColor1('#dbdbdb')
+  }
+
+  const handleFocus2 = () => {
+    setBorderColor2('#854dff')
+  }
+
+  const handleBlur2 = () => {
+    setBorderColor2('#dbdbdb')
+  }
+
+  const handleFocus3 = () => {
+    setBorderColor3('#854dff')
+  }
+
+  const handleBlur3 = () => {
     setBorderColor3('#dbdbdb')
   }
 
@@ -215,17 +269,6 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
     }
   }
 
-  const handleFocus1 = () => {
-    setBorderColor1('#854dff')
-  }
-
-  const handleFocus2 = () => {
-    setBorderColor2('#854dff')
-  }
-
-  const handleFocus3 = () => {
-    setBorderColor3('#854dff')
-  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -238,6 +281,7 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
           errorMsg={errorMsg1}
           onChange={handleDayChange}
           onFocus={handleFocus1}
+          onBlur={handleBlur1}
         />
         <Input
           borderColor={borderColor2}
@@ -247,6 +291,7 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
           errorMsg={errorMsg2}  
           onChange={handleMonthChange}
           onFocus={handleFocus2}
+          onBlur={handleBlur2}
         />
         <Input 
           borderColor={borderColor3}
@@ -256,6 +301,7 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
           errorMsg={errorMsg3} 
           onChange={handleYearChange}
           onFocus={handleFocus3}
+          onBlur={handleBlur3}
         />
         <SubmitButton />
       </div>
@@ -266,7 +312,7 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
   )
 }
 
-function Input({ textColor, borderColor, label, placeholder, errorMsg, onChange, onFocus }) {
+function Input({ textColor, borderColor, label, placeholder, errorMsg, onChange, onFocus, onBlur }) {
   return (
     <div className="input-box ">
       <label htmlFor={label} style={{ color: textColor }}>{label}</label>
@@ -278,6 +324,7 @@ function Input({ textColor, borderColor, label, placeholder, errorMsg, onChange,
         name={label}
         onChange={onChange}
         onFocus={onFocus}
+        onBlur={onBlur}
         // autoComplete="off"
       >
       </input>
