@@ -24,8 +24,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/age-calculator-app-html-css-react-CrHgAy2YMl)
-- Live Site URL: [Add live site URL here](https://lspacka.github.io/Age-calculator/)
+- Solution URL: (https://www.frontendmentor.io/solutions/age-calculator-app-html-css-react-CrHgAy2YMl)
+- Live Site URL: (https://lspacka.github.io/Age-calculator/)
 
 ### Built with
 
