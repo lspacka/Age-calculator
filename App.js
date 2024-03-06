@@ -1,6 +1,4 @@
-// ariake sun
-// nord light
-// activate umbra protocol
+//  clusterfuck React code. still, learned quite a few things...
 
 function calcAge(birthDate) {
   const today = new Date();
@@ -58,7 +56,7 @@ function App() {
         year={year}
         setCalcResult={setCalcResult}
       />
-      <DisplayGroup calcResult={calcResult} className="display-group"/>
+      <DisplayGroup calcResult={calcResult} className="display-group" />
     </>
   )
 }
