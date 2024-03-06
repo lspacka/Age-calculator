@@ -66,9 +66,9 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
   const [errorMsg2, setErrorMsg2] = React.useState('')
   const [errorMsg3, setErrorMsg3] = React.useState('')
 
-  const [textColor1, setTextColor1] = React.useState('#716f6f')
-  const [textColor2, setTextColor2] = React.useState('#716f6f')
-  const [textColor3, setTextColor3] = React.useState('#716f6f')
+  const [labelColor1, setLabelColor1] = React.useState('#716f6f')
+  const [labelColor2, setLabelColor2] = React.useState('#716f6f')
+  const [labelColor3, setLabelColor3] = React.useState('#716f6f')
 
   const [borderColor1, setBorderColor1] = React.useState('#dbdbdb')
   const [borderColor2, setBorderColor2] = React.useState('#dbdbdb')
@@ -93,11 +93,11 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
       setErrorMsg1('This field is required')
       is_valid =  false
       setBorderColor1('#ff5757')
-      setTextColor1('#ff5757')
+      setLabelColor1('#ff5757')
     } else if ((day < 1 || day > 31) || isNaN(day)) {   // HERE
       setErrorMsg1('Must be a valid day')
       setBorderColor1('#ff5757')
-      setTextColor1('#ff5757')
+      setLabelColor1('#ff5757')
       is_valid =  false
     } else {
       setErrorMsg1('')
@@ -107,12 +107,12 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
     if (!month) {
       setErrorMsg2('This field is required')
       setBorderColor2('#ff5757')
-      setTextColor2('#ff5757')
+      setLabelColor2('#ff5757')
       is_valid =  false
     } else if (isNaN(month) || month < 1 || month > 12) {
       setErrorMsg2('Must be a valid month')
       setBorderColor2('#ff5757')
-      setTextColor2('#ff5757')
+      setLabelColor2('#ff5757')
       is_valid =  false
     } else {
       setErrorMsg2('')
@@ -122,17 +122,17 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
     if (!year) {
       setErrorMsg3('This field is required')
       setBorderColor3('#ff5757')
-      setTextColor3('#ff5757')
+      setLabelColor3('#ff5757')
       is_valid =  false
     } else if (isNaN(year) || year.length != 4 || year < 0) {
       setBorderColor3('#ff5757')
-      setTextColor3('#ff5757')
+      setLabelColor3('#ff5757')
       setErrorMsg3('Must be a valid year')
       is_valid =  false
     } else if (parseInt(year) > current_year) {
       setBorderColor3('#ff5757')
       setErrorMsg3('Must be in the past')
-      setTextColor3('#ff5757')
+      setLabelColor3('#ff5757')
       is_valid =  false
     } else {
       setErrorMsg3('')
@@ -167,21 +167,21 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
   const handleDayChange = (e) => {
     setDay(e.target.value)
     setErrorMsg1('')
-    setTextColor1('#716f6f')
+    setLabelColor1('#716f6f')
     setBorderColor1('#dbdbdb')
   }
 
   const handleMonthChange = (e) => {
     setMonth(e.target.value)
     setErrorMsg2('')
-    setTextColor2('#716f6f')
+    setLabelColor2('#716f6f')
     setBorderColor2('#dbdbdb')
   }
 
   const handleYearChange = (e) => {
     setYear(e.target.value)
     setErrorMsg3('')
-    setTextColor3('#716f6f')
+    setLabelColor3('#716f6f')
     setBorderColor3('#dbdbdb')
   }
 
@@ -241,28 +241,23 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // let current_year = new Date().getFullYear()
     let is_valid = true
 
     is_valid = validateInputs(day, month, year)
     if (!is_valid) {
       setCalcResult({})
-      // setTextColor('#ff5757')
     } 
   
     //  validate date
     if (!isValidDate(day, month, year)) {
       setCalcResult({})
       // maybe try a sep container for 'invalid date' msg
-      // setTextColor('#ff5757')
       InvalidDate()
       is_valid = false
     }
 
     //  do calc
     if (is_valid) {
-      // setTextColor('#716f6f')
-      // setBorderColor('#dbdbdb')
       const birthDate = `${year}-${month}-${day}`;
       const result = calcAge(birthDate)
       setCalcResult(result)
@@ -275,7 +270,7 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
       <div className="input-group">
         <Input
           borderColor={borderColor1}
-          textColor={textColor1} 
+          labelColor={labelColor1} 
           label="D A Y" 
           placeholder="DD" 
           errorMsg={errorMsg1}
@@ -285,7 +280,7 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
         />
         <Input
           borderColor={borderColor2}
-          textColor={textColor2} 
+          labelColor={labelColor2} 
           label="M O N T H" 
           placeholder="MM" 
           errorMsg={errorMsg2}  
@@ -295,7 +290,7 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
         />
         <Input 
           borderColor={borderColor3}
-          textColor={textColor3} 
+          labelColor={labelColor3} 
           label="Y E A R" 
           placeholder="YYYY" 
           errorMsg={errorMsg3} 
@@ -312,10 +307,10 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
   )
 }
 
-function Input({ textColor, borderColor, label, placeholder, errorMsg, onChange, onFocus, onBlur }) {
+function Input({ labelColor, borderColor, label, placeholder, errorMsg, onChange, onFocus, onBlur }) {
   return (
     <div className="input-box ">
-      <label htmlFor={label} style={{ color: textColor }}>{label}</label>
+      <label htmlFor={label} style={{ color: labelColor }}>{label}</label>
       <input 
         style={{ borderColor: borderColor }}
         type="text" 
