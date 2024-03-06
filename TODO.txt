@@ -12,4 +12,3 @@
 + input label red when wrong input
 - change input outline when focused
 - fix layout shift when error msg appears
-+ change caret color
