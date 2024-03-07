@@ -43,21 +43,28 @@ body {
 
 @media screen and (min-width: 375px) {
   body {
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
+    display: grid;
+    align-items: center;
+    justify-items: center;
   }
 }
 
 #app {
   display: grid;
-  grid-template-rows: 3 1fr;
-  background: hsl(0, 0%, 100%);
+  /* grid-template-rows: 3 1fr; */
+  background: #ffffff;
   padding: 40px;
   padding-bottom: 10px;
-  height: 100%;
+  height: fit-content;
   border-radius: 15px;
   border-bottom-right-radius: 120px;
+}
+
+h1 {
+  display: none;
 }
 
 form {
@@ -114,7 +121,7 @@ input:focus {
 
 .sub-btn-cont {
   transform: translateY(25px);
-  display: grid;
+  /* display: grid; */
   border-bottom: solid 1.5px #ece2e2;
   width: 95%;
   height: 0;
@@ -132,7 +139,7 @@ button {
   justify-self: self-end;
   border-radius: 50%;
   border: none;
-  background: hsl(259, 100%, 65%);
+  background: #854dff;
   z-index: 1;
   cursor: pointer;
 }
@@ -148,7 +155,7 @@ img {
 }
 
 span {
-  color: hsl(259, 100%, 65%);
+  color: #854dff;
 }
 
 .display-group {
