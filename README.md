@@ -29,9 +29,8 @@ Users should be able to:
 
 ### Built with
 
-- HTML
-- CSS
 - React
+- CSS
 
 ## Author
 
