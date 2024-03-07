@@ -310,7 +310,7 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
 function Input({ labelColor, borderColor, label, placeholder, errorMsg, onChange, onFocus, onBlur }) {
   return (
     <div className="input-box ">
-      <label htmlFor={label} style={{ color: labelColor }}>{label}</label>
+      <label style={{ color: labelColor }}>{label}</label>
       <input 
         style={{ borderColor: borderColor }}
         type="text" 
@@ -320,7 +320,7 @@ function Input({ labelColor, borderColor, label, placeholder, errorMsg, onChange
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
-        // autoComplete="off"
+        autoComplete="off"
       >
       </input>
       <p className="error-msg">{errorMsg}</p>
@@ -350,7 +350,9 @@ function SubmitButton() {
       <button type="submit" formNoValidate>
         <img 
           src="assets/images/icon-arrow.svg" 
-          className="btn-img">
+          className="btn-img"
+          alt="button-image"
+        >
         </img>
       </button>
     </>
