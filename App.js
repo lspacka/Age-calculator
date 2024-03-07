@@ -321,7 +321,7 @@ function Input({ labelColor, borderColor, label, placeholder, errorMsg, onChange
         type="text" 
         placeholder={placeholder}
         className="input" 
-        name={label}
+        name={label.split(' ').join('')}
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}
