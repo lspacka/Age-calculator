@@ -310,7 +310,12 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
 function Input({ labelColor, borderColor, label, placeholder, errorMsg, onChange, onFocus, onBlur }) {
   return (
     <div className="input-box ">
-      <label style={{ color: labelColor }}>{label}</label>
+      <label 
+        htmlFor={label.split(' ').join('')} 
+        style={{ color: labelColor }}
+      >
+      {label}
+      </label>
       <input 
         style={{ borderColor: borderColor }}
         type="text" 
@@ -347,11 +352,11 @@ function Display({ time, value }) {
 function SubmitButton() {
   return (
     <>
-      <button type="submit" formNoValidate>
+      <button type="submit" title="submit" formNoValidate>
         <img 
           src="assets/images/icon-arrow.svg" 
           className="btn-img"
-          alt="button-image"
+          alt="arrow image for submit button"
         >
         </img>
       </button>
