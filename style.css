@@ -39,25 +39,31 @@ body {
   overflow: hidden;
   font-family: "poppins-regular";
   background: hsl(0, 0%, 94%);
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 
-@media screen and (min-width: 375px) {
+/* @media screen and (min-width: 375px) {
   body {
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     display: grid;
     align-items: center;
     justify-items: center;
   }
-}
+} */
+
+/* main {
+  height: 90vh;
+} */
 
 #app {
+  min-width: 107%;
+  max-height: 107%;
   display: grid;
   /* grid-template-rows: 3 1fr; */
   background: #ffffff;
   padding: 40px;
-  padding-bottom: 10px;
+  padding-bottom: 13px;
   height: fit-content;
   border-radius: 15px;
   border-bottom-right-radius: 120px;
@@ -72,6 +78,7 @@ form {
   /* grid-template-columns: repeat(4, 1fr); */
   grid-template-rows: repeat(2, 1fr);
   width: fit-content;
+  max-height: fit-content;
   /* padding: 15px; */
   /* margin-bottom: 50px; */
 }
@@ -86,7 +93,7 @@ form {
 }
 
 label {
-  font-size: 0.62rem;
+  font-size: 0.66rem;
   font-family: extra-bold;
   /* color: #716f6f; */
 }
@@ -113,14 +120,17 @@ input:focus {
 
 .error-msg {
   margin-top: 10px;
-  font-size: 0.57rem;
+  font-size: 0.6rem;
   color: #ff5757;
   font-family: poppins-italic;
+  width: 100%;
+  min-height: 0.6rem;
 }
 
 
 .sub-btn-cont {
-  transform: translateY(25px);
+  position: relative;
+  transform: translateY(-65px);
   /* display: grid; */
   border-bottom: solid 1.5px #ece2e2;
   width: 95%;
@@ -133,24 +143,30 @@ input:focus {
 }
 
 button {
-  transform: translate(30px, 84px);
-  width: 55px;
-  height: 55px;
+  /* transform: translate(60px, 86px); */
+  transform: translate(30px, -5px);
+  width: 70px;
+  height: 70px;
   justify-self: self-end;
   border-radius: 50%;
   border: none;
   background: #854dff;
   z-index: 1;
   cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+
+button:hover {
+  background-color: hsl(0, 0%, 8%);
 }
 
 img {
-  width: 30px;
-  height: 30px;
+  width: 33px;
+  height: 33px;
 }
 
 .display {
-  font-size: 3.5rem;
+  font-size: 4.2rem;
   font-family: extrabold-italic;
 }
 

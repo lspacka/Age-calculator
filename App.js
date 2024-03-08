@@ -298,8 +298,9 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
           onFocus={handleFocus3}
           onBlur={handleBlur3}
         />
-        <SubmitButton />
+        {/* <SubmitButton /> */}
       </div>
+      <SubmitButton />
       <div className="sub-btn-cont"> {/* this is that line besides submit btn */}
         {/* <SubmitButton /> */}
       </div>
