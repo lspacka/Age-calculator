@@ -345,7 +345,7 @@ function DisplayGroup({ calcResult }) {
 }
 
 function Display({ time, value }) {
-  if (!value && value!=0) value = '--'
+  if (!value && value!=0) value = '- -'
 
   return <div className="display"><span>{value}</span> {time}</div>
 }
