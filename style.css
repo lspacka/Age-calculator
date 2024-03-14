@@ -46,11 +46,12 @@ body {
 
 #app {
   width: 107%;
+  /* height: 107%; */
   display: grid;
   background: #ffffff;
   padding: 2.5rem;
   padding-bottom: 0.8rem;
-  height: fit-content;
+  /* height: fit-content; */
   border-radius: 15px;
   border-bottom-right-radius: 120px;
 }
@@ -91,8 +92,8 @@ label {
   margin-right: 1.5rem;
   margin-top: 5px;
   padding: 15px;
-  font-size: 1rem;
-  font-weight: bolder;
+  font-family: 'extra-bold';
+  font-size: 1.2rem;
   cursor: pointer;
   border: 0.7px solid;
   border-radius: 7px;
@@ -172,12 +173,14 @@ span {
   #app {
     margin: 73px;
     width: 70%;
+    height: 80%;
     padding-left: 1.5rem;
     padding-right: 1.1rem;
     padding-bottom: 0.8rem;
   }
   form {
     width: fit-content;
+    /* height: 95%; */
     padding-right: 0;
   }
   .error-msg {
@@ -186,16 +189,16 @@ span {
   }
   .input {
     width: 4.9rem;
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
   .input-group {
     padding-right: 0;
   }
   input#day {
-    margin-right: 1.4rem;
+    margin-right: 1rem;
   }
   input#month {
-    margin-right: 1.4rem;
+    margin-right: 1rem;
   }
   input#year {
     margin-right: 0.08rem;
@@ -215,9 +218,10 @@ span {
     height: 23px;
   }
   .display {
-    font-size: 2.6rem;
+    font-size: 3rem;
   }
-  /* .display-group {
-    margin-top: 1px;
-  } */
+  .display-group {
+    /* margin-top: 1px; */
+    transform: translateY(-25px);
+  }
 }
