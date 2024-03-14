@@ -307,9 +307,18 @@ function Input({ labelColor, borderColor, label, placeholder, errorMsg, onChange
 function DisplayGroup({ calcResult }) {  
   return (
     <div className="display-group">
-      <Display time="years" value={calcResult.diffYears} />
-      <Display time="months" value={calcResult.diffMonths} />
-      <Display time="days" value={calcResult.diffDays} />
+      <Display 
+        time={(calcResult.diffYears == 1) ? "year" : "years"}
+        value={calcResult.diffYears}   
+      />
+      <Display 
+        time={(calcResult.diffMonths == 1) ? "month" : "months"}
+        value={calcResult.diffMonths} 
+      />
+      <Display 
+        time={(calcResult.diffDays == 1) ? "day" : "days"}
+        value={calcResult.diffDays} 
+      />
     </div>
   )
 }

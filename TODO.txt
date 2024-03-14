@@ -6,10 +6,10 @@
 + once validated do calc with current date
 + fix bug when birth month is the same as current month
 + fix 0 months display
-- fix wrong day validation (its skipping right to date validation)
+- fix wrong day validation bug (its skipping right to date validation)
 + display reset when any wrong input (maybe putting all inputs validations into 1 function)
 
 + input label red when wrong input
 + fix input outline when focused
 - fix layout shift when error msg appears
-- fix for years < 4 numbers
++ fix display for values == 1
