@@ -13,8 +13,3 @@
 + fix input outline when focused
 - fix layout shift when error msg appears
 - fix for years < 4 numbers
-
-responsive:
-- understand how the code makes the structure responsive
-- apply that to my structure
-- if that fails then copy struct and css u__u

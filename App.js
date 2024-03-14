@@ -185,36 +185,6 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
     setBorderColor3('#dbdbdb')
   }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   // let current_year = new Date().getFullYear()
-  //   let is_valid = true
-
-  //   is_valid = validateInputs(day, month, year)
-  //   if (!is_valid) {
-  //     setCalcResult({})
-  //     // setTextColor('#ff5757')
-  //   } 
-  
-  //   //  validate date
-  //   if (!isValidDate(day, month, year)) {
-  //     setCalcResult({})
-  //     // maybe try a sep container for 'invalid date' msg
-  //     // setTextColor('#ff5757')
-  //     InvalidDate()
-  //     is_valid = false
-  //   }
-
-  //   //  do calc
-  //   if (is_valid) {
-  //     // setTextColor('#716f6f')
-  //     // setBorderColor('#dbdbdb')
-  //     const birthDate = `${year}-${month}-${day}`;
-  //     const result = calcAge(birthDate)
-  //     setCalcResult(result)
-  //   }
-  // }
-
   const handleFocus1 = () => {
     setBorderColor1('#854dff')
   }
@@ -301,7 +271,7 @@ function InputGroup({ day, month, year, setDay, setMonth, setYear, setCalcResult
         {/* <SubmitButton /> */}
       </div>
       <SubmitButton />
-      <div className="sub-btn-cont"> {/* this is that line besides submit btn */}
+      <div className="sub-btn-cont"> {/* this is the line besides submit btn */}
         {/* <SubmitButton /> */}
       </div>
     </form>
@@ -312,7 +282,7 @@ function Input({ labelColor, borderColor, label, placeholder, errorMsg, onChange
   return (
     <div className="input-box ">
       <label 
-        htmlFor={label.split(' ').join('')} 
+        htmlFor={label.toLowerCase().split(' ').join('')} 
         style={{ color: labelColor }}
       >
       {label}
@@ -322,7 +292,7 @@ function Input({ labelColor, borderColor, label, placeholder, errorMsg, onChange
         type="text" 
         placeholder={placeholder}
         className="input" 
-        id={label.split(' ').join('')}
+        id={label.toLowerCase().split(' ').join('')}
         onChange={onChange}
         onFocus={onFocus}
         onBlur={onBlur}

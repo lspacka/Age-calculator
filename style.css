@@ -57,7 +57,6 @@ body {
 
 h1 {
   /* color: transparent; */
-  /* font-size: 0.1rem; */
   transform: translateY(-150px);
 }
 
@@ -96,7 +95,7 @@ label {
   font-weight: bolder;
   cursor: pointer;
   border: 0.7px solid;
-  border-radius: 5px;
+  border-radius: 7px;
   outline: none;
   caret-color: #854dff;
 }
@@ -137,7 +136,7 @@ button {
   justify-self: self-end;
   border-radius: 50%;
   border: none;
-  background: rgb(133, 77, 255, 0.5);
+  background: rgb(133, 77, 255);
   z-index: 1;
   cursor: pointer;
   transition: all 0.5s ease-out;
@@ -166,27 +165,44 @@ span {
   line-height: 1.1;
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
   main {
     width: fit-content;
   }
   #app {
-    margin: 20px;
-    width: 90%;
+    margin: 73px;
+    width: 70%;
     padding-left: 1.5rem;
     padding-right: 1.1rem;
     padding-bottom: 0.8rem;
   }
   form {
-    width: 100%;
+    width: fit-content;
+    padding-right: 0;
+  }
+  .error-msg {
+    font-size: 0.5rem;
+    margin-bottom: 15px;
   }
   .input {
-    width: 5.5rem;
-    margin-right: 0.9rem;
+    width: 4.9rem;
     font-size: 0.8rem;
+  }
+  .input-group {
+    padding-right: 0;
+  }
+  input#day {
+    margin-right: 1.4rem;
+  }
+  input#month {
+    margin-right: 1.4rem;
+  }
+  input#year {
+    margin-right: 0.08rem;
   }
   .sub-btn-cont {
     width: 96%;
+    transform: translateY(-80px); /* ? */
   }
   button {
     justify-self: center;
@@ -194,7 +210,14 @@ span {
     width: 3.4rem;
     height: 3.4rem;
   }
+  img {
+    width: 23px;
+    height: 23px;
+  }
   .display {
     font-size: 2.6rem;
   }
+  /* .display-group {
+    margin-top: 1px;
+  } */
 }
