@@ -34,8 +34,5 @@ Users should be able to:
 
 ## Author
 
-- Frontend Mentor - [@lspacka](https://www.frontendmentor.io/profile/lspacka)
-- Twitter - [@lspacka](https://www.twitter.com/lspacka)
-
-## Acknowledgments
-
+- [Frontend Mentor](https://www.frontendmentor.io/profile/lspacka)
+- [Twitter](https://www.twitter.com/lspacka)
